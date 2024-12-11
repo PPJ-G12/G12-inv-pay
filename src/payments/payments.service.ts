@@ -24,7 +24,7 @@ export class PaymentsService {
           product_data: {
             name: item.name,
           },
-          unit_amount: item.price * item.quantity
+          unit_amount: item.price
         },
         quantity: item.quantity
       }
@@ -50,6 +50,11 @@ export class PaymentsService {
     }
   }
 
+  /**
+   * Recibe un webhook de Stripe y procesa los datos de la orden
+   * @param req La solicitud HTTP
+   * @param res La respuesta HTTP
+   */
   //https://docs.stripe.com/webhooks#webhooks-summary
   async stripeWebhook(req: Request, res: Response) {
     const sig = req.headers["stripe-signature"];
